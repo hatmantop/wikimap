@@ -1,3 +1,4 @@
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -31,6 +32,8 @@ public class Wikimapper {
                     .map(x -> x.split("#")[0])
                     .map(x -> x.substring(6))
                     .collect(Collectors.toSet());
+        } catch (HttpStatusException ex) {
+            return new HashSet<>();
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex.getMessage());
