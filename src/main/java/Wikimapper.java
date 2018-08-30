@@ -1,3 +1,5 @@
+import graph.WikiGraph;
+import graph.WikiPage;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -41,9 +43,11 @@ public class Wikimapper {
     }
 
     public static void main(String[] args) {
-        assert args.length == 2 : "Bad args:\n<Wiki page root> <depth>";
-        printDegrees(args[0], Integer.parseInt(args[1]), System.out, false);
-
+        assert args.length == 2 : "Bad args: <Wiki page root> <depth>";
+//        printDegrees(args[0], Integer.parseInt(args[1]), System.out, false);
+        WikiGraph wikiGraph = new WikiGraph();
+        wikiGraph.generateFromStart(new WikiPage(args[0], false), Integer.parseInt(args[1]));
+        System.out.println(wikiGraph);
     }
 
     public static void printDegrees(String root, int depth, PrintStream output, boolean withSeen) {
