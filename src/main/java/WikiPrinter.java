@@ -12,7 +12,7 @@ import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Wikimapper {
+public class WikiPrinter {
 
     public static final String WIKI_PREFIX = "https://en.wikipedia.org/wiki/";
 
@@ -44,10 +44,8 @@ public class Wikimapper {
 
     public static void main(String[] args) {
         assert args.length == 2 : "Bad args: <Wiki page root> <depth>";
-//        printDegrees(args[0], Integer.parseInt(args[1]), System.out, false);
-        WikiGraph wikiGraph = new WikiGraph();
-        wikiGraph.generateFromStart(new WikiPage(args[0], false), Integer.parseInt(args[1]));
-        System.out.println(wikiGraph);
+        printDegrees(args[0], Integer.parseInt(args[1]), System.out, false);
+
     }
 
     public static void printDegrees(String root, int depth, PrintStream output, boolean withSeen) {

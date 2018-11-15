@@ -1,0 +1,19 @@
+<name>
+<link 1>
+<link 2>
+<link 3>....
+
+ - many files, many opens
+ 
+ 
+ <# pages>
+ <page 1>
+	<title>
+	<num links>
+	<link 1>
+	<link 2>
+	<...>
+	<link n>
+ <page 2>
+ 
+- one file, really big
