@@ -17,8 +17,8 @@ public class WikiGraph {
         pages = new HashSet<>();
     }
 
-    private void addLink(WikiPage from, WikiPage to) {
-        links.add(new WikiLink(from, to));
+    private boolean addLink(WikiPage from, WikiPage to) {
+        return links.add(new WikiLink(from, to));
     }
 
     private void addPage(WikiPage pg) {
@@ -37,45 +37,26 @@ public class WikiGraph {
         return null;
     }
 
-    public void generateFromStart(WikiPage start) {
-        this.start = start;
-        pages.add(this.start);
-        generate(this.start);
-    }
-
-    private void generate(WikiPage current) {
-        Set<String> linkedTo = current.lnks();
-        for(String pagenm : linkedTo) {
-            WikiPage page = new WikiPage(pagenm, false);
-            if(!pages.contains(page)) {
-                pages.add(page);
-                addLink(current, page);
-                generate(page);
-            }
-        }
-    }
-
     public void generateFromStart(WikiPage start, int depth) {
-        if(depth < 0) {
-            throw new IllegalArgumentException("depth must be positive");
-        }
         this.start = start;
         pages.add(this.start);
         generate(this.start, depth);
     }
 
     private void generate(WikiPage current, int depthLeft) {
-        if(depthLeft > 0) {
+        //System.err.printf("Debug: left=%d\n", depthLeft);
+        if(depthLeft != 0) {
             Set<String> linkedTo = current.lnks();
             for(String pageurl : linkedTo) {
                 String url = WikiPage.makeurl(pageurl);
                 WikiPage pg = getPage(url);
                 if(pg == null) {
                     pg = new WikiPage(url, true);
+                    pages.add(pg);
                 }
-                pages.add(pg);
-                addLink(current, pg);
-                generate(pg, depthLeft - 1);
+                if(addLink(current, pg)) {
+                    generate(pg, depthLeft - 1);
+                }
             }
         }
     }

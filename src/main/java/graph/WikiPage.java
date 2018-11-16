@@ -47,7 +47,7 @@ public class WikiPage {
     private void resolve() {
             try {
                 Document page = Jsoup.connect(this.url).get();
-                System.err.printf("Debug: got page for %s\n", this.url);
+                //System.err.printf("Debug: got page for %s\n", this.url);
                 this.topicDisplay = page.getElementById("firstHeading").html();
                 Element content = page.getElementById("content");
                 Elements elements = content.getElementsByTag("a");

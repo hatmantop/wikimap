@@ -71,7 +71,7 @@ public class WikiApp {
 
     public static WikiGraph create(String pagename) {
         WikiGraph g = new WikiGraph();
-        g.generateFromStart(new WikiPage(pagename, false));
+        g.generateFromStart(new WikiPage(pagename, false), -1);
         return g;
     }
     public static WikiGraph create(String pagename, int depth) {
