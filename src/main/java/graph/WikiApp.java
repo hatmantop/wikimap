@@ -30,6 +30,7 @@ public class WikiApp {
                         currGraph = create(lineArgs[1]);
                     } else if(lineArgs.length == 3) {
                         currGraph = create(lineArgs[1], Integer.parseInt(lineArgs[2]));
+                        write("last.wmap", currGraph);
                     } else {
                         System.out.println("create <page> <depth?>");
                     }
