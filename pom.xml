@@ -41,7 +41,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>WikiPrinter</mainClass>
+			    <mainClass>graph/WikiApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
